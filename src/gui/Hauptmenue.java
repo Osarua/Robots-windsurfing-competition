@@ -36,10 +36,11 @@ public class Hauptmenue {
 		buttonPane.getChildren().add(btn4);
 		buttonPane.setAlignment(Pos.TOP_CENTER);
         buttonPane.setPadding(new Insets(2));
-        buttonPane.setSpacing(6);
+        buttonPane.setSpacing(4);
         VBox pc = new VBox(topPane, buttonPane);
         pc.setAlignment(Pos.CENTER);
         pane.setCenter(pc);
+        pane.setTranslateY(-60.0);
 		return pane;
 	}
 	

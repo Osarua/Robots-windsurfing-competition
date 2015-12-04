@@ -20,8 +20,8 @@ public class Visio extends Application {
 	private Stage primaryStage;
 	
 	public Visio(Stage primaryStagePar) throws Exception {
-		width = 700;
-		height = 700;
+		width = 600;
+		height = 600;
 		szenengraph = new StackPane();
 		primaryStage = primaryStagePar;
 		start(primaryStage);
