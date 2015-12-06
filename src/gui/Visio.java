@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -35,9 +36,12 @@ public class Visio extends Application {
 	}
 	
 	public void hauptmenueInitialisieren(){
-		Hauptmenue menue = new Hauptmenue();
+		Hauptmenue menue = new Hauptmenue(this);
 		szenengraph.getChildren().add(menue.hauptmenueErzeugen());
 	}
 	
+	public void schliessen(){
+		Platform.exit();
+	}
  
 }
