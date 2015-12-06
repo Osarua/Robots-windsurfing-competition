@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
  */
 public class Hauptmenue {
 	
-	private Visio visioMenue;
+	private Visio visio;
 	
 	private HauptmenueButtonEventHandler eventHandler;
 	
@@ -34,6 +34,7 @@ public class Hauptmenue {
 			switch(knopf.getId()){
 			case "NEU":
 				System.out.println("Neu wurde gedrückt");
+				visio.neuAuswahl();
 				break;
 			case "LADEN":
 				System.out.println("Laden wurde gedrueckt");
@@ -50,17 +51,21 @@ public class Hauptmenue {
 				break;
 			case "BEENDEN":
 				System.out.println("Beenden wurde gedrückt");
-				visioMenue.schliessen();
+				visio.schliessen();
 				}
 			}
 			}
 		}
 	
-	public Hauptmenue(Visio visioMenuePar) {
+	public Hauptmenue(Visio visioPar) {
 		eventHandler = new HauptmenueButtonEventHandler();
-		visioMenue=visioMenuePar;
+		visio=visioPar;
 	}
 	
+	/**
+	 * Erzeugt die Hauptmenue GUI
+	 * @return Pane mit Kindern
+	 */
 	public Pane hauptmenueErzeugen() {
 		BorderPane pane = new BorderPane();
 		ToggleButton btn = new ToggleButton();
@@ -98,9 +103,13 @@ public class Hauptmenue {
 		return pane;
 	}
 	
+	/**
+	 * Schriftzug des Hauptmenues 
+	 * @return Das Label (Schriftzug)
+	 */
 	public Label schriftZug() {
-		Label bla = new Label();
-		bla.setText("ROBOTS WINDSURFING COMPETITION");
-		return bla;
+		Label label = new Label();
+		label.setText("ROBOTS WINDSURFING COMPETITION");
+		return label;
 	}
 }
