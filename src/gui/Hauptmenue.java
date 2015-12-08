@@ -37,6 +37,7 @@ public class Hauptmenue {
 				ToggleButton knopf = (ToggleButton) ereignisVerursacher;
 			switch(knopf.getId()){
 			case "NEU":
+				visioMenue.neuAuswahl();
 				System.out.println("Neu wurde gedrückt");
 				break;
 			case "LADEN":
@@ -90,15 +91,15 @@ public class Hauptmenue {
 		VBox topPane = new VBox(1);
 		topPane.getChildren().add(schriftZug());
 		topPane.setAlignment(Pos.BOTTOM_CENTER);
-		topPane.setPadding(new Insets(30));
+		topPane.setPadding(new Insets(10));
 		VBox buttonPane = new VBox(4);
 		buttonPane.getChildren().add(btn);
 		buttonPane.getChildren().add(btn2);
 		buttonPane.getChildren().add(btn3);
 		buttonPane.getChildren().add(btn4);
 		buttonPane.setAlignment(Pos.TOP_CENTER);
-        buttonPane.setPadding(new Insets(2));
-        buttonPane.setSpacing(4);
+        buttonPane.setPadding(new Insets(20));
+        buttonPane.setSpacing(12);
         VBox pc = new VBox(topPane, buttonPane);
         pc.setAlignment(Pos.CENTER);
         pane.setCenter(pc);

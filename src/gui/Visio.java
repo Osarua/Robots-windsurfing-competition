@@ -1,7 +1,6 @@
 package gui;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -47,12 +46,9 @@ public class Visio extends Application {
 	 * Gibt eine Visuelle Auswahl zurueck, wenn neu geklick wurde. 
 	 */
 	public void neuAuswahl() {
+		Auswahl auswahl = new Auswahl(this);
 		szenengraph.getChildren().clear(); 
-		Menue menue = new Menue();
-		szenengraph.getChildren().add(menue.menueErzeugen());
-	//	szenengraph.getChildren().add(menue.menueErzeugen());
-		Node node = szenengraph.getChildren().get(1);
-		szenengraph.getChildren().removeAll(node);
+		szenengraph.getChildren().add(auswahl.auswahlWaehlen());
 		}
 	
 	/**
@@ -61,4 +57,8 @@ public class Visio extends Application {
 	public void schliessen(){
 		Platform.exit();
 	}	
+	
+	public StackPane getSzenengraph() {
+		return szenengraph;
+	}
 }
