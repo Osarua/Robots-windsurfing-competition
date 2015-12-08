@@ -6,10 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -21,7 +23,9 @@ import javafx.scene.layout.VBox;
  */
 public class Hauptmenue {
 	
-	private Visio visio;
+	 private static final Image wellenTest = new Image
+			 (Hauptmenue.class.getResourceAsStream("wellenTest.png"));
+	private Visio visioMenue;
 	
 	private HauptmenueButtonEventHandler eventHandler;
 	
@@ -34,7 +38,6 @@ public class Hauptmenue {
 			switch(knopf.getId()){
 			case "NEU":
 				System.out.println("Neu wurde gedrückt");
-				visio.neuAuswahl();
 				break;
 			case "LADEN":
 				System.out.println("Laden wurde gedrueckt");
@@ -51,39 +54,39 @@ public class Hauptmenue {
 				break;
 			case "BEENDEN":
 				System.out.println("Beenden wurde gedrückt");
-				visio.schliessen();
+				visioMenue.schliessen();
 				}
 			}
 			}
 		}
 	
-	public Hauptmenue(Visio visioPar) {
+	public Hauptmenue(Visio visioMenuePar) {
 		eventHandler = new HauptmenueButtonEventHandler();
-		visio=visioPar;
+		visioMenue=visioMenuePar;
 	}
 	
-	/**
-	 * Erzeugt die Hauptmenue GUI
-	 * @return Pane mit Kindern
-	 */
 	public Pane hauptmenueErzeugen() {
 		BorderPane pane = new BorderPane();
 		ToggleButton btn = new ToggleButton();
 		btn.setText("Neu");
 		btn.setId("NEU");
 		btn.setOnAction(eventHandler);
+		btn.setStyle("-fx-base: rgb(30,170,255);");
 		ToggleButton btn2 = new ToggleButton();
 		btn2.setText("Laden");
 		btn2.setId("LADEN");
 		btn2.setOnAction(eventHandler);
+		btn2.setStyle("-fx-base: rgb(30,170,255);");
 		ToggleButton btn3 = new ToggleButton();
 		btn3.setText("Hilfe");
 		btn3.setId("HILFE");
 		btn3.setOnAction(eventHandler);
+		btn3.setStyle("-fx-base: rgb(30,170,255);");
 		ToggleButton btn4 = new ToggleButton();
 		btn4.setText("Beenden");
 		btn4.setId("BEENDEN");
 		btn4.setOnAction(eventHandler);
+		btn4.setStyle("-fx-base: rgb(30,170,255);");
 		VBox topPane = new VBox(1);
 		topPane.getChildren().add(schriftZug());
 		topPane.setAlignment(Pos.BOTTOM_CENTER);
@@ -103,13 +106,10 @@ public class Hauptmenue {
 		return pane;
 	}
 	
-	/**
-	 * Schriftzug des Hauptmenues 
-	 * @return Das Label (Schriftzug)
-	 */
 	public Label schriftZug() {
-		Label label = new Label();
-		label.setText("ROBOTS WINDSURFING COMPETITION");
-		return label;
+		ImageView sample = new ImageView(wellenTest); 
+		Label bla = new Label("ROBOTS WINDSURFING COMPETITION", sample);
+		bla.setContentDisplay(ContentDisplay.TOP);
+		return bla;
 	}
 }
