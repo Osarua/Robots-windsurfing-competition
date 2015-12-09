@@ -1,14 +1,11 @@
 package gui;
 
-import gui.Hauptmenue.HauptmenueButtonEventHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.Control;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -19,35 +16,80 @@ import javafx.scene.layout.VBox;
 public class Auswahl {
 
 	private Visio visio;
+
+	private NavigierButton naviButton;
+
+	private AuswahlButtonEventHandler gedruecktEventHandler;
 	
-	public Auswahl(Visio visioPar) {
-		visio=visioPar;
-	}
-	public Pane auswahlWaehlen(){
-		VBox auswahlBox = new VBox(4);
-	        Button button1 = new Button();
-	        button1.setText("SELBSTERSTELLEN");
-	        Button button2 = new Button();
-	        button2.setText("SCHNELLER WETTKAMPF");
-	        Button button3 = new Button();
-	        button3.setText("LANGER WETTKAMPF");
-	        Button button4 = new Button();
-	        button4.setText("TEAMMATCH");
-	        Button button5 = new Button();
-	        button5.setText("LAST TEAM STANDING");
-	        Button button6 = new Button();
-	        button6.setText("ABBRECHEN");
-	        button6.setOnAction(new EventHandler<ActionEvent>(){
-				@Override
-				public void handle(ActionEvent arg0) {
+	/**
+	 * Die Innere Klasse verarbeitet die Events, 
+	 * wenn ein Button gedrueckt wurde.
+	 * @author Osarua
+	 */
+	public class AuswahlButtonEventHandler implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent event) {
+			Object ereignisVerursacher = event.getSource();
+			if (ereignisVerursacher instanceof Control) {
+				Button knopf = (Button) ereignisVerursacher;
+				switch (knopf.getId()) {
+				case "SELBSTERSTELLEN":
+					visio.neuAuswahl();
+					break;
+				case "SCHNELLER_WETTKAMPF":
+					break;
+				case "LANGER_WETTKAMPF":
+					break;
+				case "TEAMMATCH":;
+					break;
+				case "LAST_TEAM_STANDING":
+					break;
+				case "ABBRECHEN":
 					visio.getSzenengraph().getChildren().clear();
 					visio.hauptmenueInitialisieren();
-				}      	
-	        });
-	        auswahlBox.getChildren().addAll(button1,button2,button3,
-	        		button4,button5,button6);
-	        auswahlBox.setAlignment(Pos.CENTER);
-	        auswahlBox.setSpacing(12);
-	            return auswahlBox;
+				}
+			}
+		}
+	}
+	
+	public Auswahl(Visio visioPar) {
+		visio = visioPar;
+		naviButton = new NavigierButton();
+		gedruecktEventHandler = new AuswahlButtonEventHandler();
+	}
+	
+	/**
+	 * Die Methode initialisiert die die Auswahelbaren Buttons.
+	 * @return die Auswahl mit den Buttons
+	 */
+	public Pane auswahlWaehlen() {
+		VBox auswahlBox = new VBox(4);
+		Button button1 = naviButton.erzeugeAuswahlButton();
+		button1.setText("SELBSTERSTELLEN");
+		button1.setId("SELBSTERSTELLEN");
+		button1.setOnAction(gedruecktEventHandler);
+		Button button2 = naviButton.erzeugeAuswahlButton();
+		button2.setText("SCHNELLER WETTKAMPF");
+		button2.setId("SCHNELLER_WETTKAMPF");
+		button2.setOnAction(gedruecktEventHandler);
+		Button button3 = naviButton.erzeugeAuswahlButton();
+		button3.setText("LANGER WETTKAMPF");
+		button3.setId("LANGER_WETTKAMPF");
+		button3.setOnAction(gedruecktEventHandler);
+		Button button4 = naviButton.erzeugeAuswahlButton();
+		button4.setText("TEAMMATCH");
+		button4.setId("TEAMMATCH");
+		button4.setOnAction(gedruecktEventHandler);
+		Button button5 = naviButton.erzeugeAuswahlButton();
+		button5.setText("LAST TEAM STANDING");
+		button5.setId("LAST_TEAM_STANDING");
+		button5.setOnAction(gedruecktEventHandler);
+		Button button6 = naviButton.erzeugeAbbrechenButton();
+		button6.setId("ABBRECHEN");
+		button6.setOnAction(gedruecktEventHandler);
+		auswahlBox.getChildren().addAll(button1, button2, button3, button4, button5, button6);
+		auswahlBox.setAlignment(Pos.CENTER);
+		auswahlBox.setSpacing(12);
+		return auswahlBox;
 	}
 }
