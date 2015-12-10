@@ -1,13 +1,12 @@
 package competition;
 
-public class SchnellerWettkampf implements Wettkampf {
+/**
+ * Robots windsurfing competition
+ * Die Klasse repraesentiert eine Last Team Standing Simulation
+ * @author Osarua
+ */
+public class Last_Team_Standing implements Wettkampf {
 
-	//private final int anzahlDerRunden;
-	
-	public SchnellerWettkampf () {
-	//	anzahlDerRunden = 0;
-	}
-	
 	@Override
 	public int wertePunkteAus() {
 		// TODO Auto-generated method stub

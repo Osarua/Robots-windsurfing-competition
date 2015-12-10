@@ -1,13 +1,12 @@
 package competition;
 
-public class SchnellerWettkampf implements Wettkampf {
+/**
+ * Robots windsurfing competition
+ * Die Klasse repraesentiert einen Selbsterstellten Wettkampf
+ * @author Osarua
+ */
+public class Selbsterstellen implements Wettkampf {
 
-	//private final int anzahlDerRunden;
-	
-	public SchnellerWettkampf () {
-	//	anzahlDerRunden = 0;
-	}
-	
 	@Override
 	public int wertePunkteAus() {
 		// TODO Auto-generated method stub

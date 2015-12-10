@@ -17,7 +17,7 @@ public class NavigierButton {
 	public Button erzeugeAbbrechenButton(){
 		Button buttonAbbrechen = new Button();
 		buttonAbbrechen.setStyle("-fx-base: rgb(223,32,32);");  
-		buttonAbbrechen.setText("ABBRECHEN");
+		buttonAbbrechen.setText("Abbrechen");
         return buttonAbbrechen;
 	}
 	

@@ -65,23 +65,23 @@ public class Auswahl {
 	public Pane auswahlWaehlen() {
 		VBox auswahlBox = new VBox(4);
 		Button button1 = naviButton.erzeugeAuswahlButton();
-		button1.setText("SELBSTERSTELLEN");
+		button1.setText("Selbsterstellen");
 		button1.setId("SELBSTERSTELLEN");
 		button1.setOnAction(gedruecktEventHandler);
 		Button button2 = naviButton.erzeugeAuswahlButton();
-		button2.setText("SCHNELLER WETTKAMPF");
+		button2.setText("Schneller Wettkampf");
 		button2.setId("SCHNELLER_WETTKAMPF");
 		button2.setOnAction(gedruecktEventHandler);
 		Button button3 = naviButton.erzeugeAuswahlButton();
-		button3.setText("LANGER WETTKAMPF");
+		button3.setText("Langer Wettkampf");
 		button3.setId("LANGER_WETTKAMPF");
 		button3.setOnAction(gedruecktEventHandler);
 		Button button4 = naviButton.erzeugeAuswahlButton();
-		button4.setText("TEAMMATCH");
+		button4.setText("Teammatch");
 		button4.setId("TEAMMATCH");
 		button4.setOnAction(gedruecktEventHandler);
 		Button button5 = naviButton.erzeugeAuswahlButton();
-		button5.setText("LAST TEAM STANDING");
+		button5.setText("Last Team Standing");
 		button5.setId("LAST_TEAM_STANDING");
 		button5.setOnAction(gedruecktEventHandler);
 		Button button6 = naviButton.erzeugeAbbrechenButton();
