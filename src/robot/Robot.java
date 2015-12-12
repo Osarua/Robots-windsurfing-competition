@@ -40,4 +40,36 @@ public class Robot {
 		team = teamPar;
 		gesamtpunkte = gesamtpunktePar;
 	}
+
+	public int getPunkte() {
+		return punkte;
+	}
+
+	public void setPunkte(int punkte) {
+		this.punkte = punkte;
+	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public int getGesamtpunkte() {
+		return gesamtpunkte;
+	}
+
+	public void setGesamtpunkte(int gesamtpunkte) {
+		this.gesamtpunkte = gesamtpunkte;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getSeed() {
+		return seed;
+	}
 }

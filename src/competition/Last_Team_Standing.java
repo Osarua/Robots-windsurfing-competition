@@ -1,5 +1,9 @@
 package competition;
 
+import java.util.List;
+
+import robot.Robot;
+
 /**
  * Robots windsurfing competition
  * Die Klasse repraesentiert eine Last Team Standing Simulation
@@ -13,10 +17,50 @@ public class Last_Team_Standing implements Wettkampf {
 		return 0;
 	}
 
+
+
 	@Override
-	public int anzahlDerTeilnehmer() {
+	public WettkampfArt getWettkampfArt() {
+		return WettkampfArt.LANGER_WETTKAMPF;
+	}
+
+
+
+	@Override
+	public int getAnzahlDerTeilnehmer() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+
+
+	@Override
+	public int getAnzahlDerRunden() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public int getZeitProRunde() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public void addRobot(Robot robotPar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public List<Robot> getlistRobots() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
