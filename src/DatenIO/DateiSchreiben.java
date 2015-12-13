@@ -32,6 +32,7 @@ public class DateiSchreiben {
 			}
 			xRobotW = xof.createXMLStreamWriter(new FileOutputStream(fileNamePar), "utf-8");
 			xRobotW.writeStartDocument("utf-8", "1.0");
+			xRobotW.writeDTD("<!DOCTYPE robot SYSTEM \"Robot_Definition.dtd\">");
 			xRobotW.writeComment("Robots windsurfing competition: Die XML Datei stellt einen Roboter da.");
 			xRobotW.writeStartElement("robot");
 			if (roboterPar.getName() == null) {
@@ -84,6 +85,7 @@ public class DateiSchreiben {
 			}
 			xCompW = xof.createXMLStreamWriter(new FileOutputStream(fileNamePar), "utf-8");
 			xCompW.writeStartDocument("utf-8", "1.0");
+			xCompW.writeDTD("<!DOCTYPE simulationsArt SYSTEM \"Competition_Definition.dtd\">");
 			xCompW.writeComment("Robots windsurfing competition: Die XML Datei stellt einen Wettkampf da.");
 			xCompW.writeStartElement("simulationsArt");
 			xCompW.writeAttribute("wettkampfArt", wettkampfPar.getWettkampfArt().toString());

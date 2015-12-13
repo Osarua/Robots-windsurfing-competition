@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Datenaufbau fuer eine Simulation 
+-->
+<!ELEMENT simulationsArt (simulationTeilnehmer, runde, (robot)+)>
+<!ATTLIST simulationsArt wettkampfArt CDATA #REQUIRED>
+<!ELEMENT simulationTeilnehmer (#PCDATA)>
+<!ELEMENT runde (#PCDATA)>
+<!ATTLIST runde anzahlDerRunden CDATA #REQUIRED zeitProRunde CDATA #REQUIRED>
+<!ELEMENT robot (verhalten, punkte, team, gesamtpunkte)>
+<!ATTLIST robot name CDATA #REQUIRED>
+<!ELEMENT verhalten (#PCDATA)>
+<!ELEMENT punkte (#PCDATA)>
+<!ELEMENT team (#PCDATA)>
+<!ELEMENT gesamtpunkte (#PCDATA)>

@@ -32,14 +32,44 @@ public class DateiLesenTest {
 		}
 		ArrayList<Robot> robots =  new ArrayList<>(wettkampf.getlistRobots());
 		assertEquals("Sollte gleich sein",robots.get(0).getTeam(),Team.GANGOFROBOTS);
-		assertEquals("Sollte gleich sein",robots.get(0).getName(),"YETI");
-		assertEquals("Sollte gleich sein",robots.get(0).getSeed(),"1234fefgeg");
-		assertEquals("Sollte gleich sein",robots.get(0).getPunkte(),1);
-		assertEquals("Sollte gleich sein",robots.get(0).getGesamtpunkte(),10);
-		assertEquals("Sollte gleich sein",wettkampf.getAnzahlDerTeilnehmer(),10);
-		assertEquals("Sollte gleich sein",wettkampf.getRunde().getAktuelleRunde(),1);
-		assertEquals("Sollte gleich sein",wettkampf.getRunde().getAnzahlDerRunden(),3);
-		assertEquals("Sollte gleich sein",wettkampf.getRunde().getZeitProRunde(),5);
+		assertEquals(robots.get(0).getName(),"YETI");
+		assertEquals(robots.get(0).getSeed(),"1234fefgeg");
+		assertEquals(robots.get(0).getPunkte(),1);
+		assertEquals(robots.get(0).getGesamtpunkte(),10);
+		assertEquals(wettkampf.getAnzahlDerTeilnehmer(),10);
+		assertEquals(wettkampf.getRunde().getAktuelleRunde(),1);
+		assertEquals(wettkampf.getRunde().getAnzahlDerRunden(),3);
+		assertEquals(wettkampf.getRunde().getZeitProRunde(),5);		
+	}
+	
+	/**
+	 * Testet die Methode readRobotXML an beisp1.
+	 */
+	@Test
+	public void testReadRobotXML(){
+		Robot robot1 = null;
+		DateiLesen reader = new DateiLesen();
+		robot1 = reader.readRobotXML("beisp1");
+		assertEquals("Sollt gleich sein",robot1.getName(),"YETI");	
+		assertEquals(robot1.getSeed(),"1234fefgeg");		
+		assertEquals(robot1.getPunkte(),0);		
+		assertEquals(robot1.getGesamtpunkte(),10);	
+		assertEquals(robot1.getTeam(),Team.GANGOFROBOTS);
+	}
+	
+	/**
+	 * Testet die Methode readRobotXML an beisp2.
+	 */
+	@Test
+	public void testReadRobotXMLBeisp2(){
+		Robot robot2 = null;
+		DateiLesen reader = new DateiLesen();
+		robot2 = reader.readRobotXML("beisp2");
+		assertEquals("Sollt gleich sein",robot2.getName(),"Fooh");	
+		assertEquals(robot2.getSeed(),"ZZ2faasA34fefgeR");		
+	    assertEquals(robot2.getPunkte(),0);		
+		assertEquals(robot2.getGesamtpunkte(),22222);	
+		assertEquals(robot2.getTeam(), Team.DOGO);
 	}
 
 }

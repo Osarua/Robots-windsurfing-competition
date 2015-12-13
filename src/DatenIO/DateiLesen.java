@@ -24,9 +24,16 @@ import robot.Team;
  */
 public class DateiLesen {
    
+	/**
+	 * Stellt einen Wettkampf Zustand wieder her.
+	 * @param fileName Der Pfad zur Lesenden XML Datei
+	 * @return Der geladene Wttkampf
+	 * @throws ParserConfigurationException 
+	 */
 	public Wettkampf readCompetitionXml(String fileName) throws ParserConfigurationException {
 		File competitionXml = new File(fileName);
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		dbFactory.setValidating(true);
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = null;
 		try {
@@ -123,5 +130,76 @@ public class DateiLesen {
 			}
 		}
 		return wettkampf;
+	}
+	
+	/**
+	 * Liesst einen Roboter von einer passenden Robot XML Datei.
+	 * Diese ist korrekt, wenn sie aus einen Roboter besteht.
+	 * @param fileName Die zu lesende Roboter XML Datei
+	 * @return Der Roboter
+	 */
+	public Robot readRobotXML(String fileName) {
+		File competitionXml = new File(fileName);
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = null;
+		dbFactory.setValidating(true);
+		try {
+			dBuilder = dbFactory.newDocumentBuilder();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+		Document doc = null;
+		try {
+			doc = dBuilder.parse(competitionXml);
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		doc.getDocumentElement().normalize();
+		String name = null, seed = null, punkte = "0", team, gesamtpunkte = null;
+		Team inTeam = null;
+		NodeList nList = doc.getElementsByTagName("robot");
+		Node nNode = nList.item(0);
+		nList = doc.getElementsByTagName("robot");
+		nNode = nList.item(0);
+		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+			Element eElement = (Element) nNode;
+			name = eElement.getAttribute("name");
+			seed = eElement.getElementsByTagName("verhalten").item(0).getTextContent();
+			team = eElement.getElementsByTagName("team").item(0).getTextContent();
+			gesamtpunkte = eElement.getElementsByTagName("gesamtpunkte").item(0).getTextContent();
+			switch (team) {
+			case "ALPHA":
+				inTeam = Team.ALPHA;
+				break;
+			case "ZE2P":
+				inTeam = Team.ZE2P;
+				break;
+			case "OSARUA":
+				inTeam = Team.OSARUA;
+				break;
+			case "GANGOFROBOTS":
+				inTeam = Team.GANGOFROBOTS;
+				break;
+			case "EVOLUTION77":
+				inTeam = Team.EVOLUTION77;
+				break;
+			case "DOGO":
+				inTeam = Team.DOGO;
+				break;
+			case "JSRUN":
+				inTeam = Team.JSRUN;
+				break;
+			case "VARRA":
+				inTeam = Team.VARRA;
+				break;
+			case "PRADISE42":
+				inTeam = Team.PRADISE42;
+				break;
+			}
+
+		}
+		return new Robot(name, seed, new Integer(punkte), inTeam, new Integer(gesamtpunkte));
 	}
 }

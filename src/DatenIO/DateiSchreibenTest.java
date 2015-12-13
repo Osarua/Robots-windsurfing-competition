@@ -18,13 +18,17 @@ public class DateiSchreibenTest {
 	/**
 	 * Testet die Methode roboterXMLWriter.
 	 * Erzeugt einen Roboter und schreibt eine XML Datei.
+	 * Zum uebrpruefen siehe auch XML Datei und DateiLesenTest.
 	 */
 	@Test
 	public void testRoboterXMLWriter() {
+		assertTrue(true);
 		Robot robot1 = new Robot("YETI", "1234fefgeg", 1, Team.GANGOFROBOTS, 10);
 		assertTrue(true);
 		DateiSchreiben write = new DateiSchreiben();
 		write.roboterXMLWriter(robot1, "beisp1");
+		Robot robot2 = new Robot("Fooh", "ZZ2faasA34fefgeR", 2222, Team.DOGO, 22222);
+		write.roboterXMLWriter(robot2, "beisp2");
 	}
 	
 	/**

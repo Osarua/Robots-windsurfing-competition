@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--  Datenaufbau der einen Roboter "beschreibt"
- -->
-<!ELEMENT robot (verhalten)>
-<!ATTLIST robot name CDATA #REQUIRED>
-<!ELEMENT verhalten (team)>
-<!ELEMENT team (gesamtpunkte)>
-<!ELEMENT gesamtpunkte EMPTY>
