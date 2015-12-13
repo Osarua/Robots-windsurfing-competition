@@ -1,1 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--Robots windsurfing competition: Die XML Datei stellt einen Roboter da.--><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><team teamName="GANGOFROBOTS"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot>
+<?xml version="1.0" encoding="utf-8"?><!--Robots windsurfing competition: Die XML Datei stellt einen Roboter da.-->
+<robot name="YETI">
+<verhalten>1234fefgeg</verhalten>
+<team>GANGOFROBOTS</team
+><gesamtpunkte>10</gesamtpunkte>
+</robot>

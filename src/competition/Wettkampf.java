@@ -19,10 +19,6 @@ public interface Wettkampf {
 	
 	public int getAnzahlDerTeilnehmer();
 	
-	public int getAnzahlDerRunden();
-	
-	public int getZeitProRunde();
-	
 	/**
 	 * Fuegt einen Roboter zu der Liste
 	 * der teilnehmenden Roboter
@@ -31,4 +27,6 @@ public interface Wettkampf {
 	public void addRobot(Robot robotPar);
 	
 	public List<Robot> getlistRobots();
+	
+	public Runde getRunde();
 }

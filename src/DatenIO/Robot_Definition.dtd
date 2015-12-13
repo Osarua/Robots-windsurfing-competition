@@ -4,8 +4,5 @@
 <!ELEMENT robot (verhalten)>
 <!ATTLIST robot name CDATA #REQUIRED>
 <!ELEMENT verhalten (team)>
-<!ATTLIST verhatlen seed CDATA #REQUIRED>
 <!ELEMENT team (gesamtpunkte)>
-<!ATTLIST team teamName CDATA #REQUIRED>
-<!ELEMENT gesamtpunkte>
-<!ATTLIST gesamtpunkte gesamtpunkte CDATA #REQUIRED>
+<!ELEMENT gesamtpunkte EMPTY>

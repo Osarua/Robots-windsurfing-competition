@@ -5,33 +5,27 @@ import java.util.List;
 
 import robot.Robot;
 
-public class SchnellerWettkampf implements Wettkampf {
+public class Schneller_Wettkampf implements Wettkampf {
 	
 	/**
 	 * Die Anzahl der Teilnehmer dieses Wettkampfs
 	 */
 	private int anzahlDerTeilnehmer;	
-
-	/**
-	 * Die Anzahl der Runden dieses Wettkampfs
-	 */
-	private final int anzahlDerRunden;
 	
 	/**
-	 * Die dauer einer Runde
+	 * Haelt informationen ueber die Runden
 	 */
-	private final int zeitProRunde;
+	private Runde runden;
 	
 	/**
-	 * 
+	 * Liste der teilnehmenden Roboter
 	 */
 	private List<Robot> robots;
 	
-	public SchnellerWettkampf(int anzahlDerTeilnehmerPar, int anzahlDerRundenPar, 
-			int zeitProRundePar) {
+	public Schneller_Wettkampf(int anzahlDerTeilnehmerPar, int anzahlDerRundenPar, 
+			int zeitProRundePar, int aktuelleRundePar) {
 		anzahlDerTeilnehmer = anzahlDerTeilnehmerPar;
-		anzahlDerRunden = anzahlDerRundenPar;
-		zeitProRunde = zeitProRundePar;
+		runden = new Runde(anzahlDerRundenPar, zeitProRundePar, aktuelleRundePar);
 		robots = new ArrayList<>(anzahlDerTeilnehmer);
 	}
 	
@@ -67,11 +61,7 @@ public class SchnellerWettkampf implements Wettkampf {
 		this.anzahlDerTeilnehmer = anzahlDerTeilnehmer;
 	}
 
-	public int getAnzahlDerRunden() {
-		return anzahlDerRunden;
-	}
-
-	public int getZeitProRunde() {
-		return zeitProRunde;
+	public Runde getRunde() {
+		return runden;
 	}
 }

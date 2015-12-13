@@ -42,16 +42,16 @@ public class DateiSchreiben {
 			if (roboterPar.getSeed() == null) {
 				throw new NullPointerException("Der Seed des Roboters ist null");
 			}
-			xRobotW.writeAttribute("seed", roboterPar.getSeed());
+			xRobotW.writeCharacters(roboterPar.getSeed());
 			xRobotW.writeEndElement();
 			xRobotW.writeStartElement("team");
-			xRobotW.writeAttribute("teamName", roboterPar.getTeam().toString());
+			xRobotW.writeCharacters(roboterPar.getTeam().toString());
 			xRobotW.writeEndElement();
 			xRobotW.writeStartElement("gesamtpunkte");
 			if (Integer.toString(roboterPar.getGesamtpunkte()) == null) {
 				throw new NullPointerException("Die Gesamtpunkte des Roboters sind null");
 			}
-			xRobotW.writeAttribute("gesamtpunkte", Integer.toString(roboterPar.getGesamtpunkte()));
+			xRobotW.writeCharacters(Integer.toString(roboterPar.getGesamtpunkte()));
 			xRobotW.writeEndElement();
 			xRobotW.writeEndElement();
 			xRobotW.writeEndDocument();
@@ -87,13 +87,16 @@ public class DateiSchreiben {
 			xCompW.writeComment("Robots windsurfing competition: Die XML Datei stellt einen Wettkampf da.");
 			xCompW.writeStartElement("simulationsArt");
 			xCompW.writeAttribute("wettkampfArt", wettkampfPar.getWettkampfArt().toString());
-			xCompW.writeStartElement("simulationEigenschaften");
-			xCompW.writeAttribute("anzahlderTeilnehmer", Integer.toString(wettkampfPar.getAnzahlDerTeilnehmer()));
-			xCompW.writeAttribute("anzahlDerRunden", Integer.toString(wettkampfPar.getAnzahlDerRunden()));
-			xCompW.writeAttribute("zeitProRunde",  Integer.toString(wettkampfPar.getZeitProRunde()));
+			xCompW.writeStartElement("simulationTeilnehmer");
+			xCompW.writeCharacters(Integer.toString(wettkampfPar.getAnzahlDerTeilnehmer()));
+			xCompW.writeEndElement();
+			xCompW.writeStartElement("runde");
+			xCompW.writeAttribute("anzahlDerRunden", Integer.toString(wettkampfPar.getRunde().getAnzahlDerRunden()));
+			xCompW.writeAttribute("zeitProRunde",  Integer.toString(wettkampfPar.getRunde().getZeitProRunde()));
+			xCompW.writeCharacters(Integer.toString(wettkampfPar.getRunde().getAktuelleRunde()));
 			xCompW.writeEndElement();
 			ArrayList<Robot> robots = new ArrayList<>(wettkampfPar.getlistRobots());
-			for(int i=0;i<wettkampfPar.getAnzahlDerTeilnehmer();i++){
+			for(int i=0;i<robots.size();i++){
 				Robot robot = robots.get(i);
 			xCompW.writeStartElement("robot");
 			if (robot.getName() == null) {
@@ -104,22 +107,22 @@ public class DateiSchreiben {
 			if (robot.getSeed() == null) {
 				throw new NullPointerException("Der Seed des Roboters ist null");
 			}
-			xCompW.writeAttribute("seed", robot.getSeed());
+			xCompW.writeCharacters(robot.getSeed());
 			xCompW.writeEndElement();
 			xCompW.writeStartElement("punkte");
 			if (Integer.toString(robot.getPunkte()) == null) {
 				throw new NullPointerException("Die Gesamtpunkte des Roboters sind null");
 			}
-			xCompW.writeAttribute("punkte", Integer.toString(robot.getPunkte()));
+			xCompW.writeCharacters(Integer.toString(robot.getPunkte()));
 			xCompW.writeEndElement();
 			xCompW.writeStartElement("team");
-			xCompW.writeAttribute("teamName", robot.getTeam().toString());
+			xCompW.writeCharacters(robot.getTeam().toString());
 			xCompW.writeEndElement();
 			xCompW.writeStartElement("gesamtpunkte");
 			if (Integer.toString(robot.getGesamtpunkte()) == null) {
 				throw new NullPointerException("Die Gesamtpunkte des Roboters sind null");
 			}
-			xCompW.writeAttribute("gesamtpunkte", Integer.toString(robot.getGesamtpunkte()));
+			xCompW.writeCharacters(Integer.toString(robot.getGesamtpunkte()));
 			xCompW.writeEndElement();
 			xCompW.writeEndElement();
 			}

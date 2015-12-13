@@ -1,1 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?><!--Robots windsurfing competition: Die XML Datei stellt einen Wettkampf da.--><simulationsArt wettkampfArt="SCHNELLER_WETTKAMPF"><simulationEigenschaften anzahlderTeilnehmer="10" anzahlDerRunden="3" zeitProRunde="5"></simulationEigenschaften><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="GANGOFROBOTS"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="ALPHA"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="BENNI"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="ZE2P"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="OSARUA"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="EVOLUTION77"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="DOGO"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="JSRUN"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="VARRA"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot><robot name="YETI"><verhalten seed="1234fefgeg"></verhalten><punkte punkte="1"></punkte><team teamName="PRADISE42"></team><gesamtpunkte gesamtpunkte="10"></gesamtpunkte></robot></simulationsArt>
+<?xml version="1.0" encoding="utf-8"?>
+<!--Robots windsurfing competition: Die XML Datei stellt einen Wettkampf da.-->
+<simulationsArt wettkampfArt="SCHNELLER_WETTKAMPF">
+<simulationTeilnehmer>10</simulationTeilnehmer>
+<runde anzahlDerRunden="3" zeitProRunde="5">1</runde>
+<robot name="YETI">
+<verhalten>1234fefgeg</verhalten>
+<punkte>1</punkte>
+<team>GANGOFROBOTS</team>
+<gesamtpunkte>10</gesamtpunkte>
+</robot><robot name="YETI">
+<verhalten>1234fefgeg</verhalten>
+<punkte>1</punkte>
+<team>ALPHA</team>
+<gesamtpunkte>10</gesamtpunkte>
+</robot><robot name="YETI">
+<verhalten>1234fefgeg</verhalten>
+<punkte>1</punkte>
+<team>BENNI</team>
+<gesamtpunkte>10</gesamtpunkte>
+</robot><robot name="YETI">
+<verhalten>1234fefgeg</verhalten>
+<punkte>1</punkte>
+<team>ZE2P</team>
+<gesamtpunkte>10</gesamtpunkte
+></robot><robot name="YETI">
+<verhalten>1234fefgeg</verhalten>
+<punkte>1</punkte><team>OSARUA</team><gesamtpunkte>10</gesamtpunkte></robot><robot name="YETI"><verhalten>1234fefgeg</verhalten><punkte>1</punkte><team>EVOLUTION77</team><gesamtpunkte>10</gesamtpunkte></robot><robot name="YETI"><verhalten>1234fefgeg</verhalten><punkte>1</punkte><team>DOGO</team><gesamtpunkte>10</gesamtpunkte></robot><robot name="YETI"><verhalten>1234fefgeg</verhalten><punkte>1</punkte><team>JSRUN</team><gesamtpunkte>10</gesamtpunkte></robot><robot name="YETI"><verhalten>1234fefgeg</verhalten><punkte>1</punkte><team>VARRA</team><gesamtpunkte>10</gesamtpunkte></robot><robot name="YETI"><verhalten>1234fefgeg</verhalten><punkte>1</punkte><team>PRADISE42</team><gesamtpunkte>10</gesamtpunkte></robot></simulationsArt>

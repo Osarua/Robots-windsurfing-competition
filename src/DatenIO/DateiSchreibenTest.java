@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import competition.SchnellerWettkampf;
+import competition.Schneller_Wettkampf;
 import competition.Wettkampf;
 import robot.Robot;
 import robot.Team;
@@ -44,7 +44,7 @@ public class DateiSchreibenTest {
 		Robot robot9 = new Robot("YETI", "1234fefgeg", 1, Team.VARRA, 10);
 		Robot robot10 = new Robot("YETI", "1234fefgeg", 1, Team.PRADISE42, 10);
 		assertTrue(true);
-		Wettkampf competition = new SchnellerWettkampf(10, 3, 5);
+		Wettkampf competition = new Schneller_Wettkampf(10, 3, 5, 1);
 		competition.addRobot(robot1);
 		competition.addRobot(robot2);
 		competition.addRobot(robot3);
