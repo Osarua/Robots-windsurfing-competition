@@ -34,7 +34,7 @@ public class Runde {
 				throw new IllegalArgumentException("zeitProRundePar "
 						+ "darf nicht kleiner als eins sein");
 			}
-			else if((aktuelleRundePar<1)) {
+			else if((aktuelleRundePar<0)) {
 				throw new IllegalArgumentException("aktuelleRundePar "
 						+ "darf nicht kleiner als eins sein");
 			}
@@ -57,6 +57,10 @@ public class Runde {
 
 	public int getAktuelleRunde() {
 		return aktuelleRunde;
+	}
+	
+	public void setAktuelleRunde(int akutelleRundePar) {
+		aktuelleRunde = akutelleRundePar;
 	}
 
 	public String toString() {

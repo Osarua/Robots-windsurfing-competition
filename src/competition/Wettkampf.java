@@ -2,6 +2,7 @@ package competition;
 
 import java.util.List;
 
+import gui.AuswertungAusgabe;
 import robot.Robot;
 
 /**
@@ -11,7 +12,10 @@ import robot.Robot;
  */
 public interface Wettkampf {
  	
-	public int wertePunkteAus();
+	/**
+	 * Startet die Simulation.
+	 */
+	public void peng(AuswertungAusgabe auswertungAusgabePar);
 	
 	/**
 	 * Getter.
@@ -32,6 +36,13 @@ public interface Wettkampf {
 	 */
 	public void addRobot(Robot robotPar);
 	
+	/**
+	 * Erzeugt Roboter mit Hilfe der Klasse RobotErzeuger.
+	 * Die erzeugten Robots werden der Liste der Teilnehmer hinzugefügt.
+	 * @param anzahl Die Anzahl der zu erzeugenden Robots
+	 */
+	public void erzeugeRobots(int anzahl);
+		
 	/**
 	 * Getter.
 	 * @return Liste der Roboter.

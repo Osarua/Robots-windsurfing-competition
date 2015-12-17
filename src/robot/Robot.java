@@ -7,16 +7,21 @@ package robot;
  */
 public class Robot {
 
-
+	/**
+	 * Postition des Roboters in einem
+	 * Wettkampf.
+	 */
+	private int position;
+	
 	/**
 	 * Name des Roboters.
 	 */
-	private final String name;
+	private String name;
 	
 	/**
 	 * Seed des Roboters worauf sein Verhalten aufbaut
 	 */
-	private final String seed;
+	private String seed;
 	
 	/**
 	 * Bisherige Punkte. 
@@ -39,6 +44,7 @@ public class Robot {
 		punkte = punktePar;
 		team = teamPar;
 		gesamtpunkte = gesamtpunktePar;
+		position = 0;
 	}
 
 	public int getPunkte() {
@@ -72,4 +78,13 @@ public class Robot {
 	public String getSeed() {
 		return seed;
 	}
+	
+	public int getPosition() {
+		return position;
+	}
+	
+	public void setPosition(int positionPar) {
+		position = positionPar;
+	}
+	
 }

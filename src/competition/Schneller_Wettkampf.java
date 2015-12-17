@@ -3,8 +3,13 @@ package competition;
 import java.util.ArrayList;
 import java.util.List;
 
-import robot.Robot;
-
+import gui.AuswertungAusgabe;
+import robot.*;
+/**
+ * Robots windsurfing competition
+ * Die Klasse repraesentiert einen Schnellen Wettkamnpf.
+ * @author Osarua
+ */
 public class Schneller_Wettkampf implements Wettkampf {
 	
 	/**
@@ -30,9 +35,14 @@ public class Schneller_Wettkampf implements Wettkampf {
 	}
 	
 	@Override
-	public int wertePunkteAus() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void peng(AuswertungAusgabe auswertungAusgabePar) {
+		while(getRunde().getAktuelleRunde()<=getRunde().getAnzahlDerRunden()) {
+			// Aktuelle Tabelle ausgeben
+			auswertungAusgabePar.auswertungTabelleErstellen();
+			// Gehe in die nächste Runde...
+			getRunde().setAktuelleRunde(getRunde().getAktuelleRunde()+1);
+		}
+
 	}
 
 	public List<Robot> getlistRobots() {
@@ -44,10 +54,44 @@ public class Schneller_Wettkampf implements Wettkampf {
 	 * der teilnehmenden Roboter
 	 * @param robotPar Der hinzuzufuegende Roboter
 	 */
-	public void addRobot(Robot robotPar){
+	public void addRobot(Robot robotPar) {
+		try {
+			if (robotPar == null) {
+				new NullPointerException("robotPar darf nicht null sein");
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+			e.getStackTrace();
+		}
 		robots.add(robotPar);
 	}
 	
+	@Override
+	public void erzeugeRobots(int anzahl) {
+		try {
+			if (anzahl < 1) {
+				new IllegalArgumentException("Die anzahl sollte Größer als 0 sein");
+			}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			e.getStackTrace();
+		} 
+		RobotErzeuger robotErzeuger = new RobotErzeuger();
+		Robot robot = null;
+		while(anzahl>0){
+			robot = robotErzeuger.erzeugeRobotRandom();
+			addRobot(robot);
+			anzahl--;
+		}
+	}
+	
+	@Override
+	public String toString() {
+		return "Schneller Wettkampf: \n" +
+	"Anzahl der Teilnehmer: "+ anzahlDerTeilnehmer + "\nRunde:" + runden.getAktuelleRunde() +
+	"\nRunden: " + runden.getAnzahlDerRunden() + ", Zeit Pro Runde: " + runden.getZeitProRunde();
+	}
+
 	@Override
 	public WettkampfArt getWettkampfArt() {
 		return WettkampfArt.SCHNELLER_WETTKAMPF;

@@ -37,8 +37,8 @@ public class NavigierButton {
 	 */
 	public Button erzeugeFortfahrenButton() {
 		Button buttonFortfahren = new Button();
-		buttonFortfahren.setStyle("-fx-base: rgb(238,244,108);");  
-		buttonFortfahren.setText("FORTFAHREN");
+		buttonFortfahren.setStyle("-fx-base: rgb(13,255,0);");  
+		buttonFortfahren.setText("Fortfahren");
         return buttonFortfahren;
 	}
 	
@@ -46,10 +46,10 @@ public class NavigierButton {
 	 * Erzeugt einen speichern und fortfahren Button.
 	 * @return Speichern und fortfahren Button
 	 */
-	public Button erzeugeSpeichernUndFortfahrenButton() {
-		Button buttonSpeichernUndFortfahren = new Button();
-		buttonSpeichernUndFortfahren.setStyle("-fx-base: rgb(13,255,0);");  
-		buttonSpeichernUndFortfahren.setText("SPEICHERN & FORTFAHREN");
-        return buttonSpeichernUndFortfahren;
+	public Button erzeugeSpeichern() {
+		Button buttonSpeichern = new Button();
+		buttonSpeichern.setStyle("-fx-base: rgb(238,244,108);");  
+		buttonSpeichern.setText("Speichern");
+        return buttonSpeichern;
 	}
 }

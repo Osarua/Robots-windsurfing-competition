@@ -1,5 +1,6 @@
 package gui;
 
+import competition.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -37,6 +38,10 @@ public class Auswahl {
 					visio.neuAuswahl();
 					break;
 				case "SCHNELLER_WETTKAMPF":
+					Wettkampf schneller_Wettkampf = new Schneller_Wettkampf(15, 4, 10000, 0);
+					schneller_Wettkampf.erzeugeRobots(15);
+					AuswertungAusgabe auswertungA = new AuswertungAusgabe(visio, schneller_Wettkampf);
+					schneller_Wettkampf.peng(auswertungA);
 					break;
 				case "LANGER_WETTKAMPF":
 					break;

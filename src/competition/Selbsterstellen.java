@@ -3,7 +3,9 @@ package competition;
 import java.util.ArrayList;
 import java.util.List;
 
+import gui.AuswertungAusgabe;
 import robot.Robot;
+import robot.RobotErzeuger;
 
 /**
  * Robots windsurfing competition
@@ -35,8 +37,9 @@ public class Selbsterstellen implements Wettkampf {
 	}
 	
 	@Override
-	public int wertePunkteAus() {
-		return 0;
+	public void peng(AuswertungAusgabe auswertungAusgabePar) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -56,6 +59,25 @@ public class Selbsterstellen implements Wettkampf {
 	 */
 	public void addRobot(Robot robotPar){
 		robots.add(robotPar);
+	}
+	
+	@Override
+	public void erzeugeRobots(int anzahl) {
+		try {
+			if (anzahl < 1) {
+				new IllegalArgumentException("Die anzahl sollte Größer als 0 sein");
+			}
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			e.getStackTrace();
+		} 
+		RobotErzeuger robotErzeuger = new RobotErzeuger();
+		Robot robot = null;
+		while(anzahl>0){
+			robot = robotErzeuger.erzeugeRobotRandom();
+			addRobot(robot);
+			anzahl--;
+		}
 	}
 	
 	public int getAnzahlDerTeilnehmer() {
