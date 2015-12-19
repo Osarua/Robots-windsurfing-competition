@@ -1,6 +1,7 @@
 package gui;
 
 import competition.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -57,9 +58,12 @@ public class AuswertungAusgabe {
 				case "SPEICHERN":
 					break;
 				case "FORTSETZEN":
+					synchronized (simulation) {
+						simulation.notifyAll();
 					fortfahren = true;
-					break;
 				}
+					break;
+				}	
 			}
 		}
 	}
@@ -67,8 +71,9 @@ public class AuswertungAusgabe {
 	 * Die Mthode gibt die Tabelle aus sowie die Möglichkeit zu speichern
 	 * fortzufahren und zurück zum Hauptmenue zu komme.
 	 */
-	public void auswertungTabelleErstellen() {
-		visio.getSzenengraph().getChildren().clear();
+	public  synchronized void  auswertungTabelleErstellen() {
+
+			visio.getSzenengraph().getChildren().clear();
 		VBox auswertungGui = new VBox();
 		auswertungGui.getChildren().add(rundeInformation());
 		auswertungGui.setAlignment(Pos.CENTER);
@@ -78,12 +83,13 @@ public class AuswertungAusgabe {
 		visio.getSzenengraph().getChildren().add(auswertungGui);
 	}
 	
+	
 	/**
 	 * Ezeugt ein Menuesteuerung die es ermöglicht fortzufahren, speichern 
 	 * und zurueck ins Startmenue zu kommen.
 	 * @return Pane die Steuerrung
 	 */
-	public Pane menueSteuerungAuswertung() {
+	public synchronized Pane menueSteuerungAuswertung() {
 		NavigierButton naviButton = new NavigierButton();
 		HBox menue = new HBox();
 		Button buttonStartmenue = naviButton.erzeugeAbbrechenButton();
@@ -94,7 +100,13 @@ public class AuswertungAusgabe {
 		buttonSpeichern.setId("SPEICHERN");
 		buttonSpeichern.setOnAction(gedruecktEventHandler);
 		Button buttonFortsetzen = naviButton.erzeugeFortfahrenButton();
-		buttonFortsetzen.setId("FORTSETZEN");
+	   buttonFortsetzen.setId("FORTSETZEN");
+//		buttonFortsetzen.setOnAction(new EventHandler<ActionEvent>() {
+//				@Override
+//				public synchronized void handle(ActionEvent arg0) {
+//					notifyAll();
+//				}}
+//				);
 		buttonFortsetzen.setOnAction(gedruecktEventHandler);
 		menue.getChildren().addAll(buttonStartmenue,buttonSpeichern,buttonFortsetzen);
 		menue.setAlignment(Pos.CENTER);
@@ -114,7 +126,7 @@ public class AuswertungAusgabe {
 		infoBox.setTranslateY(-20.0);
 		return infoBox;
 	}
-	  
+	
 	public boolean getFortfahren() {
 		return fortfahren;
 	}

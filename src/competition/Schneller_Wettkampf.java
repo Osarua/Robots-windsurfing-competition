@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gui.AuswertungAusgabe;
+import javafx.application.Platform;
 import robot.*;
 /**
  * Robots windsurfing competition
@@ -39,6 +40,14 @@ public class Schneller_Wettkampf implements Wettkampf {
 		while(getRunde().getAktuelleRunde()<=getRunde().getAnzahlDerRunden()) {
 			// Aktuelle Tabelle ausgeben
 			auswertungAusgabePar.auswertungTabelleErstellen();
+			synchronized (auswertungAusgabePar) {
+				try {
+					auswertungAusgabePar.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			// Gehe in die nächste Runde...
 			getRunde().setAktuelleRunde(getRunde().getAktuelleRunde()+1);
 		}

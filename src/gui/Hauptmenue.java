@@ -23,8 +23,8 @@ import javafx.scene.layout.VBox;
  */
 public class Hauptmenue {
 	
-	 private static final Image wellenTest = new Image
-			 (Hauptmenue.class.getResourceAsStream("wellenTest.png"));
+//	 private static final Image wellenTest = new Image
+//			 (Hauptmenue.class.getResourceAsStream("wellenTest.png"));
 	private Visio visioMenue;
 	
 	private HauptmenueButtonEventHandler eventHandler;
@@ -113,8 +113,8 @@ public class Hauptmenue {
 	 * @return Label 
 	 */
 	public Label schriftZug() {
-		ImageView sample = new ImageView(wellenTest);
-		Label bla = new Label("ROBOTS WINDSURFING COMPETITION", sample);
+		//ImageView sample = new ImageView(wellenTest);
+		Label bla = new Label("ROBOTS WINDSURFING COMPETITION");
 		bla.setContentDisplay(ContentDisplay.TOP);
 		return bla;
 	}

@@ -40,7 +40,7 @@ public class Auswahl {
 				case "SCHNELLER_WETTKAMPF":
 					Wettkampf schneller_Wettkampf = new Schneller_Wettkampf(15, 4, 10000, 0);
 					schneller_Wettkampf.erzeugeRobots(15);
-					AuswertungAusgabe auswertungA = new AuswertungAusgabe(visio, schneller_Wettkampf);
+					AuswertungAusgabe auswertungA = new AuswertungAusgabe(visio, schneller_Wettkampf);				
 					schneller_Wettkampf.peng(auswertungA);
 					break;
 				case "LANGER_WETTKAMPF":
