@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 /**
@@ -68,6 +69,7 @@ public class Hauptmenue {
 	}
 	
 	public Pane hauptmenueErzeugen() {
+		StackPane stackPane = new StackPane();
 		BorderPane pane = new BorderPane();
 		ToggleButton btn = new ToggleButton();
 		btn.setText("Neu");
@@ -105,7 +107,9 @@ public class Hauptmenue {
 		pc.setAlignment(Pos.CENTER);
 		pane.setCenter(pc);
 		pane.setTranslateY(-60.0);
-		return pane;
+		stackPane.setAlignment(Pos.CENTER);
+		stackPane.getChildren().add(pane);
+		return stackPane;
 	}
 
 	/**

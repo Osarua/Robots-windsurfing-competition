@@ -37,20 +37,11 @@ public class Schneller_Wettkampf implements Wettkampf {
 	
 	@Override
 	public void peng(AuswertungAusgabe auswertungAusgabePar) {
-		while(getRunde().getAktuelleRunde()<=getRunde().getAnzahlDerRunden()) {
+	 if(getRunde().getAktuelleRunde()<=getRunde().getAnzahlDerRunden()) {
 			// Aktuelle Tabelle ausgeben
 			auswertungAusgabePar.auswertungTabelleErstellen();
-			synchronized (auswertungAusgabePar) {
-				try {
-					auswertungAusgabePar.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
 			// Gehe in die nächste Runde...
-			getRunde().setAktuelleRunde(getRunde().getAktuelleRunde()+1);
-		}
+		} 	
 
 	}
 

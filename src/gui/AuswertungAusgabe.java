@@ -1,7 +1,8 @@
 package gui;
 
+import java.util.ArrayList;
+
 import competition.*;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -13,6 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import karte.RobotWarmUp;
+import robot.Robot;
 
 /**
  * Robots windsurfing competition
@@ -27,16 +30,20 @@ public class AuswertungAusgabe {
 	
 	private Tabelle tabelle;
 	
-	private boolean fortfahren; 
-	
 	private AuswahlButtonEventHandler gedruecktEventHandler;
+	
+//	private final AuswertungAusgabe auswertungsAusgabe;
+	
+	private RobotWarmUp robotWarmUp;
 	
 	public AuswertungAusgabe(Visio visioPar, Wettkampf simulationPar) {
 		visio = visioPar;
 		simulation = simulationPar;	
 		tabelle = new Tabelle();
 		gedruecktEventHandler = new AuswahlButtonEventHandler();
-		fortfahren = false;
+	//	auswertungsAusgabe = this;
+		robotWarmUp = new RobotWarmUp(simulation.getRunde().
+				getZeitProRunde(),(ArrayList<Robot>) simulation.getlistRobots(),visio);
 	}
 	
 	/**
@@ -58,10 +65,9 @@ public class AuswertungAusgabe {
 				case "SPEICHERN":
 					break;
 				case "FORTSETZEN":
-					synchronized (simulation) {
-						simulation.notifyAll();
-					fortfahren = true;
-				}
+					simulation.getRunde().setAktuelleRunde(simulation.getRunde().getAktuelleRunde() +1);
+					visio.getSzenengraph().getChildren().clear();
+					robotWarmUp.surf();			
 					break;
 				}	
 			}
@@ -71,14 +77,13 @@ public class AuswertungAusgabe {
 	 * Die Mthode gibt die Tabelle aus sowie die Möglichkeit zu speichern
 	 * fortzufahren und zurück zum Hauptmenue zu komme.
 	 */
-	public  synchronized void  auswertungTabelleErstellen() {
-
-			visio.getSzenengraph().getChildren().clear();
+	public void auswertungTabelleErstellen() {
+		visio.getSzenengraph().getChildren().clear();
 		VBox auswertungGui = new VBox();
 		auswertungGui.getChildren().add(rundeInformation());
 		auswertungGui.setAlignment(Pos.CENTER);
 		auswertungGui.getChildren().add(tabelle.erstelleTabelle(
-				simulation.getRunde().getAktuelleRunde(),simulation.getlistRobots()));
+		simulation.getRunde().getAktuelleRunde(),simulation.getlistRobots()));
 		auswertungGui.getChildren().add(menueSteuerungAuswertung());
 		visio.getSzenengraph().getChildren().add(auswertungGui);
 	}
@@ -100,13 +105,7 @@ public class AuswertungAusgabe {
 		buttonSpeichern.setId("SPEICHERN");
 		buttonSpeichern.setOnAction(gedruecktEventHandler);
 		Button buttonFortsetzen = naviButton.erzeugeFortfahrenButton();
-	   buttonFortsetzen.setId("FORTSETZEN");
-//		buttonFortsetzen.setOnAction(new EventHandler<ActionEvent>() {
-//				@Override
-//				public synchronized void handle(ActionEvent arg0) {
-//					notifyAll();
-//				}}
-//				);
+	    buttonFortsetzen.setId("FORTSETZEN");
 		buttonFortsetzen.setOnAction(gedruecktEventHandler);
 		menue.getChildren().addAll(buttonStartmenue,buttonSpeichern,buttonFortsetzen);
 		menue.setAlignment(Pos.CENTER);
@@ -127,7 +126,4 @@ public class AuswertungAusgabe {
 		return infoBox;
 	}
 	
-	public boolean getFortfahren() {
-		return fortfahren;
-	}
 }
