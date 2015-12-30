@@ -94,7 +94,7 @@ public class DateiSchreiben {
 			xCompW.writeEndElement();
 			xCompW.writeStartElement("runde");
 			xCompW.writeAttribute("anzahlDerRunden", Integer.toString(wettkampfPar.getRunde().getAnzahlDerRunden()));
-			xCompW.writeAttribute("zeitProRunde",  Integer.toString(wettkampfPar.getRunde().getZeitProRunde()));
+			xCompW.writeAttribute("zeitProRunde",  Long.toString(wettkampfPar.getRunde().getZeitProRunde()));
 			xCompW.writeCharacters(Integer.toString(wettkampfPar.getRunde().getAktuelleRunde()));
 			xCompW.writeEndElement();
 			ArrayList<Robot> robots = new ArrayList<>(wettkampfPar.getlistRobots());

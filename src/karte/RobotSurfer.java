@@ -2,7 +2,6 @@ package karte;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import javafx.animation.PathTransition;
 import javafx.animation.PathTransitionBuilder;
 import javafx.event.ActionEvent;
@@ -15,9 +14,14 @@ import javafx.scene.shape.Path;
 import javafx.scene.shape.PathBuilder;
 import javafx.util.Duration;
 
+/**
+ * Robots windsurfing competition
+ * In dieser Klasse wird der Path gesteuert
+ * @author Osarua
+ */
 public class RobotSurfer extends Observable implements Runnable{	
 
-	private int zeitProRuunde;
+	private long zeitProRuunde;
 
 	private long startZeit;
 	
@@ -27,16 +31,21 @@ public class RobotSurfer extends Observable implements Runnable{
 
 	private int koordinateY;
 	
-	private int[][] koordinaten;
+	private static int[][] koordinaten;
+	
+	private Thread t;
 	
 	private PathTransition pathTransition;
 
-	public RobotSurfer(int zeitProRundePar, int[][] koordinatenXyPar, 
+	public RobotSurfer(long zeitProRundePar, int[][] koordinatenXyPar, 
 			Observer observerPar, PathTransition pathTransitionThreadPar) {
 		zeitProRuunde = zeitProRundePar;
 		koordinaten = koordinatenXyPar;
 		addObserver(observerPar);
 		pathTransition= pathTransitionThreadPar;
+		koordinateX = 0;
+		koordinateY = 0;
+		t = new Thread(this);
 	}
 
 	  private Path machWasAnderes(double x, double y) {
@@ -112,7 +121,6 @@ public class RobotSurfer extends Observable implements Runnable{
 					double x, y;
 					x =pathTransition.getNode().getTranslateX();
 					y= pathTransition.getNode().getTranslateY();
-				//	stop();
 					if(!pathCheck(x,y)) {
 						if(x<20||y<20){
 						pathTransition.setPath(geradeAus(x+4, y+4));
@@ -132,19 +140,19 @@ public class RobotSurfer extends Observable implements Runnable{
 
 					} else {
 						pathTransition.setPath(machWasAnderes(x+6, y+6));
-
-					}
+					} 
 				      setChanged();
 				      notifyObservers();			
+			}});
 				}
-		    });
-}
 
 		public void play() {
-			pathTransition.play();
-			
+			pathTransition.play();		
+		} 
+	      
+		public Thread getThread(){
+			return t;
 		}
-	 
-	        }
+}
 
 

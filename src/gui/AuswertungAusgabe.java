@@ -1,6 +1,8 @@
 package gui;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import competition.*;
 import javafx.event.ActionEvent;
@@ -22,7 +24,7 @@ import robot.Robot;
  * Ist für die Darstellung der Auswertung zur verfuegung.
  * @author Osarua
  */
-public class AuswertungAusgabe {
+public class AuswertungAusgabe implements Observer  {
 
 	private Visio visio;
 	
@@ -32,8 +34,6 @@ public class AuswertungAusgabe {
 	
 	private AuswahlButtonEventHandler gedruecktEventHandler;
 	
-//	private final AuswertungAusgabe auswertungsAusgabe;
-	
 	private RobotWarmUp robotWarmUp;
 	
 	public AuswertungAusgabe(Visio visioPar, Wettkampf simulationPar) {
@@ -41,8 +41,7 @@ public class AuswertungAusgabe {
 		simulation = simulationPar;	
 		tabelle = new Tabelle();
 		gedruecktEventHandler = new AuswahlButtonEventHandler();
-	//	auswertungsAusgabe = this;
-		robotWarmUp = new RobotWarmUp(simulation.getRunde().
+		robotWarmUp = new RobotWarmUp((Observer) this, simulation.getRunde().
 				getZeitProRunde(),(ArrayList<Robot>) simulation.getlistRobots(),visio);
 	}
 	
@@ -65,14 +64,15 @@ public class AuswertungAusgabe {
 				case "SPEICHERN":
 					break;
 				case "FORTSETZEN":
-					simulation.getRunde().setAktuelleRunde(simulation.getRunde().getAktuelleRunde() +1);
+					simulation.getRunde().setAktuelleRunde(simulation.getRunde().getAktuelleRunde() +1);		
 					visio.getSzenengraph().getChildren().clear();
-					robotWarmUp.surf();			
+					robotWarmUp.surf();	
 					break;
 				}	
 			}
 		}
 	}
+	
 	/**
 	 * Die Mthode gibt die Tabelle aus sowie die Möglichkeit zu speichern
 	 * fortzufahren und zurück zum Hauptmenue zu komme.
@@ -87,7 +87,6 @@ public class AuswertungAusgabe {
 		auswertungGui.getChildren().add(menueSteuerungAuswertung());
 		visio.getSzenengraph().getChildren().add(auswertungGui);
 	}
-	
 	
 	/**
 	 * Ezeugt ein Menuesteuerung die es ermöglicht fortzufahren, speichern 
@@ -104,10 +103,13 @@ public class AuswertungAusgabe {
 		Button buttonSpeichern = naviButton.erzeugeSpeichern();
 		buttonSpeichern.setId("SPEICHERN");
 		buttonSpeichern.setOnAction(gedruecktEventHandler);
-		Button buttonFortsetzen = naviButton.erzeugeFortfahrenButton();
-	    buttonFortsetzen.setId("FORTSETZEN");
-		buttonFortsetzen.setOnAction(gedruecktEventHandler);
-		menue.getChildren().addAll(buttonStartmenue,buttonSpeichern,buttonFortsetzen);
+		menue.getChildren().addAll(buttonStartmenue,buttonSpeichern);
+		if(simulation.getRunde().getAnzahlDerRunden()!=simulation.getRunde().getAktuelleRunde()) {
+			Button buttonFortsetzen = naviButton.erzeugeFortfahrenButton();
+		    buttonFortsetzen.setId("FORTSETZEN");
+			buttonFortsetzen.setOnAction(gedruecktEventHandler);
+			menue.getChildren().add(buttonFortsetzen);
+		}
 		menue.setAlignment(Pos.CENTER);
 		menue.setPadding(new Insets(10));
 		menue.setSpacing(120.0);
@@ -126,4 +128,12 @@ public class AuswertungAusgabe {
 		return infoBox;
 	}
 	
+	public AuswertungAusgabe getAuswertung(){
+		return this;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		simulation.peng(new AuswertungAusgabe(visio, simulation));	
+	}
 }

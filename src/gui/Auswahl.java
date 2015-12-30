@@ -38,8 +38,8 @@ public class Auswahl {
 					visio.neuAuswahl();
 					break;
 				case "SCHNELLER_WETTKAMPF":
-					Wettkampf schneller_Wettkampf = new Schneller_Wettkampf(1000, 4, 5000, 0);
-					schneller_Wettkampf.erzeugeRobots(1000);
+					Wettkampf schneller_Wettkampf = new Schneller_Wettkampf(2, 4, 60000, 0);
+					schneller_Wettkampf.erzeugeRobots(10);
 					AuswertungAusgabe auswertungA = new AuswertungAusgabe(visio, schneller_Wettkampf);				
 					schneller_Wettkampf.peng(auswertungA);
 					break;

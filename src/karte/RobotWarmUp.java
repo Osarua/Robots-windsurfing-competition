@@ -11,7 +11,6 @@ import javafx.animation.PathTransitionBuilder;
 import javafx.animation.Animation.Status;
 import javafx.animation.PathTransition.OrientationType;
 import javafx.application.Platform;
-import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.LineTo;
@@ -23,9 +22,11 @@ import javafx.util.Duration;
 import robot.Robot;
 import robot.Team;
 
-public class RobotWarmUp implements Observer {
+public class RobotWarmUp extends Observable implements Observer {
 
-	private int zeitProRunde;
+	private List<RobotSurfer> surfer;
+	
+	private long zeitProRunde;
 	
 	private ArrayList<Robot> robots;
 	
@@ -41,7 +42,13 @@ public class RobotWarmUp implements Observer {
 	
 	private  List<PathTransition> pathTransitions;
 	
-	public RobotWarmUp(int zeitProRundePar,ArrayList<Robot> robtsPar, Visio visioPar){
+	private long startZeit;
+	
+	private long rennDauer;
+	
+	private Wind wind;
+	
+	public RobotWarmUp(Observer observerPar, long zeitProRundePar,ArrayList<Robot> robtsPar, Visio visioPar){
 		zeitProRunde = zeitProRundePar;
 		robots = robtsPar;
 		visio = visioPar;
@@ -51,11 +58,14 @@ public class RobotWarmUp implements Observer {
 		root = new Pane();
 		root.setStyle("-fx-background-color: skyblue;");
 		pathTransitions = new ArrayList<PathTransition>();
+		addObserver(observerPar);
+		startZeit = 0;
+		rennDauer = 0;	
 	}
 	
 	public void surf() {
 		visio.getSzenengraph().getChildren().add(root);
-		List<RobotSurfer> surfer = new ArrayList<RobotSurfer>();
+		surfer = new ArrayList<RobotSurfer>();
 		for (int i = 0; i < robots.size(); i++) {
 			if (i < 5) {
 				koordinateX += 100;
@@ -82,27 +92,18 @@ public class RobotWarmUp implements Observer {
 				koordinateX = 300;
 				koordinateY = 325;
 			}
-			pathTransitions.add(init(robots.get(i), koordinateX, koordinateY));
+			pathTransitions.add(anfahren(robots.get(i), koordinateX, koordinateY));
 			surfer.add(new RobotSurfer(zeitProRunde, koordinaten, (Observer) this, pathTransitions.get(i)));
 		}
-		List<Thread> threads = new ArrayList<>();
 		for (int i = 0; i < pathTransitions.size(); i++) {
 			pathTransitions.get(i).play();
-			Thread pathThread = new Thread(surfer.get(i));
-			pathThread.start();
-			threads.add(pathThread);
+			surfer.get(i).getThread().start();
 		}
-		for (int i = 0; i < threads.size(); i++) {
-			try {
-				threads.get(i).join();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}	
-	
+		startZeit = System.currentTimeMillis();
+		rennDauer = System.currentTimeMillis() - startZeit;
 	}
 	
-    private PathTransition init(Robot robot, double kX, double kY) {
+    private PathTransition anfahren(Robot robot, double kX, double kY) {
 		PathTransition pathTransition;
 		Rectangle rect = new Rectangle(0, 0, 12, 4);
 		rect.setArcHeight(80);
@@ -147,9 +148,6 @@ public class RobotWarmUp implements Observer {
                     new LineTo(kX+10.0*((Math.random()*2)+1), kY+10.0*((Math.random()*2))+1)
                 )
                 .build();
-        path.setStroke(Color.DODGERBLUE);
-        path.getStrokeDashArray().setAll(5d,5d);
-     //   root.getChildren().add(path);
         pathTransition = PathTransitionBuilder.create()
                 .duration(Duration.seconds(3*((int)(Math.random()*4)+1)))
                 .path(path)
@@ -160,18 +158,35 @@ public class RobotWarmUp implements Observer {
         return pathTransition;
     }
 
-    @Override
-    public void update(Observable arg0, Object arg1) {
-      Platform.runLater(new Runnable() {
-        @Override
-        public void run() {
-        	for(int i=0;i<pathTransitions.size();i++){
-        		  if(pathTransitions.get(i).getStatus()==Status.STOPPED ) {
-        			  pathTransitions.get(i).play();
-        		  }
-        	}
-       
-        	
-      }});
-    }
-}
+    
+    
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		if (rennDauer < zeitProRunde) {
+			rennDauer = System.currentTimeMillis() - startZeit;
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					for (int i = 0; i < pathTransitions.size(); i++) {
+						if (pathTransitions.get(i).getStatus() == Status.STOPPED) {
+							pathTransitions.get(i).play();
+						}
+					}
+				}
+			});
+		} else {
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			for (int i = 0; i < pathTransitions.size(); i++) {
+				
+					pathTransitions.get(i).stop();
+			}
+			setChanged();
+			notifyObservers();
+		
+	}
+	}
+	}

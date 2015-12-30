@@ -17,14 +17,14 @@ public class Runde {
 	/**
 	 * Die dauer einer Runde
 	 */
-	private final int zeitProRunde;
+	private final long zeitProRunde;
 	
 	/**
 	 * Aktuelle Runde 
 	 */
 	private int aktuelleRunde;
 	
-	public Runde(int anzahlDerRundenPar, int zeitProRundePar, int aktuelleRundePar) {
+	public Runde(int anzahlDerRundenPar, long zeitProRundePar, int aktuelleRundePar) {
 		try {
 			if((anzahlDerRundenPar<1)) {
 				throw new IllegalArgumentException("anzahlDerRundenPar "
@@ -51,7 +51,7 @@ public class Runde {
 		return anzahlDerRunden;
 	}
 
-	public int getZeitProRunde() {
+	public long getZeitProRunde() {
 		return zeitProRunde;
 	}
 

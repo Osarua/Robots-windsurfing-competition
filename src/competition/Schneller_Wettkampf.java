@@ -40,14 +40,8 @@ public class Schneller_Wettkampf implements Wettkampf {
 	 if(getRunde().getAktuelleRunde()<=getRunde().getAnzahlDerRunden()) {
 			// Aktuelle Tabelle ausgeben
 			auswertungAusgabePar.auswertungTabelleErstellen();
-			// Gehe in die nächste Runde...
-		} 	
-
-	}
-
-	public List<Robot> getlistRobots() {
-		return robots;
-	}
+	 }
+	 } 	
 	
 	/**
 	 * Fuegt einen Roboter zu der Liste
@@ -89,7 +83,7 @@ public class Schneller_Wettkampf implements Wettkampf {
 	public String toString() {
 		return "Schneller Wettkampf: \n" +
 	"Anzahl der Teilnehmer: "+ anzahlDerTeilnehmer + "\nRunde:" + runden.getAktuelleRunde() +
-	"\nRunden: " + runden.getAnzahlDerRunden() + ", Zeit Pro Runde: " + runden.getZeitProRunde();
+	"\nRunden: " + runden.getAnzahlDerRunden() + ", Zeit Pro Runde: " + runden.getZeitProRunde()/1000 + "s";
 	}
 
 	@Override
@@ -107,5 +101,9 @@ public class Schneller_Wettkampf implements Wettkampf {
 
 	public Runde getRunde() {
 		return runden;
+	}
+	
+	public List<Robot> getlistRobots() {
+		return robots;
 	}
 }

@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
@@ -40,7 +41,7 @@ public class Hauptmenue {
 		public void handle(ActionEvent event) {
 			Object ereignisVerursacher = event.getSource();
 			if (ereignisVerursacher instanceof Control) {
-				ToggleButton knopf = (ToggleButton) ereignisVerursacher;
+				Button knopf = (Button) ereignisVerursacher;
 				switch (knopf.getId()) {
 				case "NEU":
 					visioMenue.neuAuswahl();
@@ -58,6 +59,7 @@ public class Hauptmenue {
 					break;
 				case "BEENDEN":
 					visioMenue.schliessen();
+					break;
 				}
 			}
 		}
@@ -68,29 +70,24 @@ public class Hauptmenue {
 		visioMenue = visioMenuePar;
 	}
 	
-	public Pane hauptmenueErzeugen() {
-		StackPane stackPane = new StackPane();
-		BorderPane pane = new BorderPane();
-		ToggleButton btn = new ToggleButton();
+	public Pane hauptmenueErzeugen() {	
+		NavigierButton naviButton = new NavigierButton();
+		Button btn = naviButton.erzeugeAuswahlButton();
 		btn.setText("Neu");
 		btn.setId("NEU");
 		btn.setOnAction(eventHandler);
-		btn.setStyle("-fx-base: rgb(134,241,247);");
-		ToggleButton btn2 = new ToggleButton();
+		Button btn2 = naviButton.erzeugeAuswahlButton();
 		btn2.setText("Laden");
 		btn2.setId("LADEN");
 		btn2.setOnAction(eventHandler);
-		btn2.setStyle("-fx-base: rgb(134,241,247);");
-		ToggleButton btn3 = new ToggleButton();
+		Button btn3 = naviButton.erzeugeAuswahlButton();
 		btn3.setText("Hilfe");
 		btn3.setId("HILFE");
 		btn3.setOnAction(eventHandler);
-		btn3.setStyle("-fx-base: rgb(134,241,247);");
-		ToggleButton btn4 = new ToggleButton();
+		Button btn4 = naviButton.erzeugeAbbrechenButton();
 		btn4.setText("Beenden");
 		btn4.setId("BEENDEN");
 		btn4.setOnAction(eventHandler);
-		btn4.setStyle("-fx-base: rgb(134,241,247);");
 		VBox topPane = new VBox(1);
 		topPane.getChildren().add(schriftZug());
 		topPane.setAlignment(Pos.BOTTOM_CENTER);
@@ -105,11 +102,8 @@ public class Hauptmenue {
 		buttonPane.setSpacing(12);
 		VBox pc = new VBox(topPane, buttonPane);
 		pc.setAlignment(Pos.CENTER);
-		pane.setCenter(pc);
-		pane.setTranslateY(-60.0);
-		stackPane.setAlignment(Pos.CENTER);
-		stackPane.getChildren().add(pane);
-		return stackPane;
+		pc.setTranslateY(-60.0);
+		return pc;
 	}
 
 	/**
